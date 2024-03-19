@@ -1,0 +1,79 @@
+{% extends 'agency/index.html' %}
+{% block head %}Manage All Buses{% endblock %}
+{% block body %}
+    <div class="col-lg-4 col-xl-8 offset-xl-2">
+          <div class="search-wrapper">
+    <form action="/agency_add_bus_post" method="post">
+        <table class="table table-borderless">
+            <tr>
+            <td>
+                <p align="right"><strong>Name</strong> </p>
+            </td>
+            <td >
+                <p>
+                    <input type="text" class="form-control" name="name" id="textfield" minlength="3" required autofocus/>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p align="right"><strong>Bus RC</strong> </p>
+            </td>
+            <td><p>
+              <input type="text" class="form-control" name="rc" id="textfield1" minlength="3"  required/>
+            </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p align="right"><strong>RegNo</strong> </p>
+            </td>
+            <td><p>
+              <input type="text" class="form-control" name="regno" minlength="3" required>
+            </p>
+            </td>
+        </tr>
+            <tr>
+            <td>
+                <p align="right"><strong>Number of Seats</strong> </p>
+            </td>
+            <td><p>
+              <input type="number" class="form-control" name="seats" min="10" max="50" minlength="2" required>
+            </p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div align="center">
+                    <p>
+                        <input type="submit" name="submit" class="button" id="button" value="Add" />
+                    </p>
+                    <p>&nbsp;</p>
+                </div>
+            </td>
+        </tr>
+
+        </table>
+    </form>
+          </div></div>
+<table width="100%" class="table table-bordered">
+  <tr>
+      <th><div align="center">Sl</div></th>
+      <th><div align="center">Name</div></th>
+      <th><div align="center">RC</div></th>
+      <th><div align="center">RegNo</div></th>
+      <th><div align="center">Edit</div></th>
+      <th><div align="center">Delete</div></th>
+  </tr>{%for i in data%}
+    <tr>
+        <td align="center">{{forloop.counter}}</td>
+        <td align="center">{{i.name}}</td>
+        <td align="center">{{i.rc}}</td>
+        <td align="center">{{ i.regno }}</td>
+        <td align="center"><a href="/agency_edit_bus/{{ i.id }}">Click here</a></td>
+        <td align="center"><a href="/agency_delete_bus/{{ i.id }}">Click here</a></td>
+    </tr>
+    {%endfor%}
+
+</table>
+{% endblock %}

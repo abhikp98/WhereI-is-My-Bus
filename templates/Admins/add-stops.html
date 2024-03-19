@@ -1,0 +1,29 @@
+{% extends 'Admins/index.html' %}
+{% block head %}
+    Add Bus Stops
+{% endblock %}
+{% block body %}
+<form action="/add_stops_post/{{ id }}" method="post">
+    {% csrf_token %}
+    Stop name: <input type="text" name="stop" placeholder="Add Bus in Order..." autofocus minlength="5" required>&nbsp;<input type="submit" class="btn" value="Add">
+</form>
+    {% if data|length != 0 %}
+<table class="table table-bordered">
+    <tr>
+        <th>Sl</th>
+        <th>Stops</th>
+    </tr>
+    {% for i in data %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ i.name }}</td>
+    </tr>
+    {% endfor %}
+</table>
+    {% else %}
+        <div class="col-lg-4 col-xl-8 offset-xl-2">
+            <div class="search-wrapper">
+                No Stops Are Added Yet
+            </div></div>
+    {% endif %}
+{% endblock %}

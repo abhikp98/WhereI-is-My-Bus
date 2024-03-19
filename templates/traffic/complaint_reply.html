@@ -1,0 +1,18 @@
+{% extends 'traffic/index.html' %}
+{% block head %}Send Reply{% endblock %}
+{% block body %}
+    <div class="col-lg-4 col-xl-8 offset-xl-2">
+          <div class="search-wrapper">
+    <form action="/admin_reply_post/{{ complaintid }}" method="post">
+    <table class="table table-borderless">
+    <tr>
+        <th>
+            <textarea class="form-control m-3" name="replytext" required></textarea>
+            <input type="submit" value="Send" class="btn">
+        </th>
+    </tr>
+    </table>
+    </form>
+          </div></div>
+
+{% endblock %}

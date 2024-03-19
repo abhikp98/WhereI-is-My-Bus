@@ -1,0 +1,51 @@
+{% extends 'agency/index.html' %}
+{% block head %}
+    Edit {{ data.name }}
+{% endblock %}
+{% block body %}
+     <div class="col-lg-4 col-xl-8 offset-xl-2">
+          <div class="search-wrapper">
+    <form action="/agency_edit_bus_post/{{ data.id }}" method="post">
+        <table class="table table-borderless">
+            <tr>
+            <td>
+                <p align="right"><strong>Name</strong> </p>
+            </td>
+            <td >
+                <p>
+                    <input type="text" class="form-control" name="name" id="textfield" minlength="3" value="{{ data.name }}" required autofocus/>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p align="right"><strong>Bus RC</strong> </p>
+            </td>
+            <td><p>
+              <input type="text" class="form-control" name="rc" id="textfield1" value="{{ data.rc }}" minlength="3" readonly  required/>
+            </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p align="right"><strong>RegNo</strong> </p>
+            </td>
+            <td><p>
+              <input type="text" class="form-control" name="regno" value="{{ data.regno }}" minlength="3" readonly required>
+            </p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div align="center">
+                    <p>
+                        <input type="submit" name="submit" class="button" id="button" value="Edit" />
+                    </p>
+                    <p>&nbsp;</p>
+                </div>
+            </td>
+        </tr>
+
+        </table>
+    </form>
+{% endblock %}

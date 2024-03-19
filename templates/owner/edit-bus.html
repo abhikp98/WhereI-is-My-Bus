@@ -1,0 +1,73 @@
+{% extends 'owner/index.html' %}
+{% block head %}
+    Edit Bus
+{% endblock %}
+{% block body %}
+    <div class="col-lg-4 col-xl-8 offset-xl-2">
+          <div class="search-wrapper">
+<form action="/edit_bus_post/{{ data.id }}" method="post" enctype="multipart/form-data" name="form1" id="form1">
+    {% csrf_token %}
+    <table class="table table-borderless">
+        <tr>
+            <td width="50%">
+                <p align="right"><strong>Name</strong> </p>
+            </td>
+            <td width="50%">
+                <p>
+                    <input type="text" class="form-control" name="name" id="textfield" value="{{ data.name }}" minlength="3"  required/>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p align="right"><strong>Bus RC</strong> </p>
+            </td>
+            <td><p>
+              <input type="text" class="form-control" name="rc" id="textfield1" value="{{ data.rc }}"  minlength="3" required/>
+            </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p align="right"><strong>RegNo</strong> </p>
+            </td>
+            <td><p>
+              <input type="text" class="form-control" name="regno" value="{{ data.regno }}" minlength="3" required>
+            </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p align="right"><strong>Assign route</strong></p>
+            </td>
+            <td>
+                <p>
+                    {% for i in list %}
+                        {% if i.id in check  %}
+                            <label>
+                                <input type="checkbox" name="route" checked value="{{ i.id }}">{{ i.tripfrom }} to {{ i.tripto }}<br>
+                            </label>
+                        {% else %}
+                            <label>
+                                <input type="checkbox" name="route" value="{{ i.id }}">{{ i.tripfrom }} to {{ i.tripto }}<br>
+                            </label>
+                        {% endif %}
+                    {% endfor %}
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div align="center">
+                    <p>
+                        <input type="submit" name="submit" class="button" id="button" value="Update" />
+                    </p>
+                    <p>&nbsp;</p>
+                </div>
+            </td>
+        </tr>
+
+    </table>
+</form>
+          </div></div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'agency/index.html' %}
+{% block head %}
+    View Bookings
+{% endblock %}
+{% block body %}
+<table class="table table-bordered">
+<tr>
+    <th>SL</th>
+    <th>Name</th>
+    <th>Bus</th>
+    <th>Route</th>
+    <th>Timings</th>
+    <th>Seat Number</th>
+</tr>
+    {% for i in data %}
+<tr>
+    <td>{{ forloop.counter }}</td>
+    <td>{{ i.USER.name }}</td>
+    <td>{{ i.SCHEDULEBUS.TRAVELALLOCATE.TRAVELBUS.name }}</td>
+    <td>{{ i.SCHEDULEBUS.TRAVELALLOCATE.ROUTE.tripfrom }} to {{ i.SCHEDULEBUS.TRAVELALLOCATE.ROUTE.tripto }}</td>
+    <td>{{ i.SCHEDULEBUS.timefrom }} to {{ i.SCHEDULEBUS.timeto }}</td>
+    <td>{{ i.seatlist }}</td>
+</tr>
+{% endfor %}
+
+</table>
+{% endblock %}

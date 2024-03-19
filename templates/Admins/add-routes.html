@@ -1,0 +1,43 @@
+{% extends 'Admins/index.html' %}
+{% block body %}
+<form action="/add_routes_post" method="post">
+{% csrf_token %}
+<div class="input-group mb-5 px-5">
+  <input type="text" class="form-control" name="from" placeholder="From..." aria-label="Username" minlength="5" required autofocus>
+  <input type="text" class="form-control" name="to" placeholder="To..." aria-label="Server" minlength="5" required>
+    <div class="form-check">
+  <input class="form-check-input" type="radio" name="type" id="flexRadioDefault1" value="Local" required>
+  <label class="form-check-label" for="flexRadioDefault1">
+    Local
+  </label>
+</div>
+    <div class="form-check">
+  <input class="form-check-input" type="radio" name="type" id="flexRadioDefault2" value="Long">
+  <label class="form-check-label" for="flexRadioDefault2">
+    Long
+  </label>
+</div>
+
+    <input class="btn btn-info" type="submit" value="Add">
+</div>
+</form>
+<table class="table table-bordered">
+    <tr>
+        <th>Sl</th>
+        <th>Routes</th>
+        <th>Type</th>
+        <th>Add Stops</th>
+        <th>Delete Stop</th>
+    </tr>
+    {% for i in data %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ i.tripfrom }} to {{ i.tripto }}</td>
+        <td>{{ i.type }}</td>
+        {% if i.type == 'Local' %}<td><a href="/add_stops/{{ i.id }}">Click Here</a></td>{% else %}<td>Not avalailable for Long route</td>{% endif %}
+
+    <td><a href="/delete_route/{{ i.id }}" onclick="return confirm('Are you sure you want to delete?')">Click Here</a> </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

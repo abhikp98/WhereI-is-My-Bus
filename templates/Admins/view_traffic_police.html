@@ -1,0 +1,33 @@
+{% extends 'Admins/index.html' %}
+{% block head %}
+    View Traffic Polices
+{% endblock %}
+{% block body %}
+    {% if data|length != 0 %}
+<table class="table table-bordered">
+  <tr>
+      <th><div align="center">Sl</div></th>
+      <th><div align="center">Name</div></th>
+      <th><div align="center">Email</div></th>
+      <th><div align="center">Location</div></th>
+      <th><div align="center">Delete</div></th>
+
+  </tr>
+    {%for i in data%}
+        <tr>
+            <td align="center">{{forloop.counter}}</td>
+            <td align="center">{{i.name}}</td>
+            <td align="center">{{i.email}}</td>
+            <td align="center"><a href="https://www.google.com/maps?q={{ i.latitude }},{{ i.longitude }}" target="_blank">Click Here</a> </td>
+            <td align="center"><a href="/admin_delete_traffic_police/{{ i.id }}" onclick="return confirm('Do you really want to delete?')">Click Here</a></td>
+        </tr>
+    {%endfor%}
+
+</table>
+    {% else %}
+        <div class="col-lg-4 col-xl-8 offset-xl-2">
+          <div class="search-wrapper">
+        No Bus Lists are Available Right now
+          </div></div>
+    {% endif %}
+{% endblock %}

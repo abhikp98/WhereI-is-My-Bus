@@ -1,0 +1,49 @@
+{% extends 'agency/index.html' %}
+{% block head %}
+    manage Schedule
+{% endblock %}
+{% block body %}
+    <div class="col-lg-4 col-xl-8 offset-xl-2">
+    <div class="search-wrapper">
+          <form method="post" action="/agency_schedule_post/{{ obj.id }}">
+          <table class="table table-borderless">
+              <tr>
+                  <td>
+                      date: <input type="date" placeholder="Date" class="form-control" name="date" required>
+                  </td>
+              <td>
+                  Start: <input type="time" placeholder="Starting time" class="form-control" name="start" required>
+              </td>
+                  <td>
+                  End: <input type="time" placeholder="Reaching time" class="form-control" name="end" required>
+              </td>
+              <td>
+                  <input type="submit" name="submit" class="btn btn-info" id="button" value="Add" />
+              </td>
+              </tr>
+          </table>
+          </form>
+    </div>
+    </div>
+
+    <table class="table table-bordered">
+    <tr align="center"><th colspan="2">Bus: {{ obj.TRAVELBUS.name }}</th><th colspan="3">Route: {{ obj.ROUTE.tripfrom }} to {{ obj.ROUTE.tripto }}</th></tr>
+    <tr align="center">
+        <th colspan="5">Timings</th>
+    </tr>
+    <tr align="center">
+        <th>Sl</th><th>Date</th><th>Start</th><th>End</th><th>Delete</th>
+    </tr>
+
+        {% for i in data %}
+            <tr align="center">
+            <td>{{ forloop.counter }}</td>
+                <td>{{ i.date }}</td>
+            <td>{{ i.timefrom }}</td>
+            <td>{{ i.timeto }}</td>
+            <td><a href="/agency_delete_schedule/{{ obj.id }}/{{ i.id }}" onclick="return confirm('Do you really want to delete?')">Click Here</a></td>
+         </tr>
+        {% endfor %}
+
+    </table>
+{% endblock %}

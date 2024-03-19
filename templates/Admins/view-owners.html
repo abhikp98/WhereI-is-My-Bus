@@ -1,0 +1,32 @@
+{% extends 'Admins/index.html' %}
+{% block head %}
+View Owners
+{% endblock %}
+{% block body %}
+<table class="table table-bordered">
+  <tr>
+      <th><div align="center">Sl</div></th>
+      <th><div align="center">Name</div></th>
+      <th><div align="center">Email</div></th>
+      <th><div align="center">phone</div></th>
+      <th><div align="center">Photo</div></th>
+      <th><div align="center">Approval/Status</div></th>
+  </tr>{%for i in data%}
+    <tr>
+        <td align="center">{{forloop.counter}}</td>
+        <td align="center">{{i.name}}</td>
+        <td align="center">{{i.email}}</td>
+        <td align="center">{{i.phone}}</td>
+        <td align="center"><img src="/{{ i.photo }}" alt="{{ i.photo }} photo" width="50" height="50"></td>
+        {%if i.LOGIN.usertype == 'pending'%}
+        <td><table width="100%"><tr><td align="left"><a href="/owner_approval/Approved/{{i.id}}">Approve</a></td><td align="right"><a href="/owner_approval/Rejected/{{i.id}}">Reject</a></td></tr></table></td>
+        {%elif i.LOGIN.usertype == 'owner'%}
+            <td align="center">Approved</td>
+        {% else %}
+        <td align="center">Rejected</td>
+        {%endif%}
+
+    </tr>
+    {%endfor%}
+
+</table>{% endblock %}

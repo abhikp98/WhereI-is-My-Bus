@@ -1,0 +1,30 @@
+{% extends 'Admins/index.html' %}
+{% block head %}
+    View Feedbacks
+{% endblock %}
+{% block body %}
+    {% if data|length != 0 %}
+<table class="table table-bordered">
+    <tr>
+        <th>Sl</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>name</th>
+        <th>Feedback</th>
+
+    </tr>
+    {% for i in data %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.date }}</td>
+            <td>{{ i.time }}</td>
+            <td>{{ i.USER.name }}</td>
+            <td>{{ i.feedback }}</td>
+        </tr>
+    {% endfor %}
+</table>
+    {% else %}
+    <div class="col-lg-4 col-xl-8 offset-xl-2">
+        <div class="search-wrapper">No Feedbacks are submitted yet!</div></div>
+    {% endif %}
+{% endblock %}

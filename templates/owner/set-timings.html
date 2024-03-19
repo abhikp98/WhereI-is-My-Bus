@@ -1,0 +1,20 @@
+{% extends 'owner/index.html' %}
+{% block head %}
+    Set Timings
+{% endblock %}
+{% block body %}
+    <div class="col-lg-4 col-xl-8 offset-xl-2">
+          <div class="search-wrapper">
+<form method="post" action="/set_bus_timings_post/{{ busid }}">
+{% csrf_token %}
+    <select name="route" onchange="adds(this.value, {{ busid }})" required>
+        <option value="-1">--SELECT--</option>
+        {% for i in data %}
+            <option value="{{ i.ROUTE.id }}">{{ i.ROUTE.tripfrom }} to {{ i.ROUTE.tripto }}</option>
+        {% endfor %}
+    </select>
+<br>
+<table class="table table-bordered" id="stop">
+</table>
+</form></div></div>
+{% endblock %}

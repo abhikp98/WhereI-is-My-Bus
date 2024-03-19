@@ -1,0 +1,34 @@
+{% extends 'owner/index.html' %}
+{% block head %}View All Buses{% endblock %}
+{% block body %}
+    {% if data|length != 0 %}
+<table class="table table-bordered">
+  <tr>
+      <th><div align="center">Sl</div></th>
+      <th><div align="center">Bus name</div></th>
+      <th><div align="center">RC Number</div></th>
+      <th><div align="center">Register Number</div></th>
+      <th><div align="center">Edit</div> </th>
+      <th><div align="center">Delete</div> </th>
+      <th><div align="center">Set Timings</div> </th>
+      <th><div align="center">Track</div> </th>
+  </tr>
+    {%for i in data%}
+    <tr>
+        <td align="center">{{forloop.counter}}</td>
+        <td align="center">{{i.name}}</td>
+        <td align="center">{{i.rc}}</td>
+        <td align="center">{{i.regno}}</td>
+        <td align="center"><a href="/edit_bus/{{ i.id }}">Click Here</a></td>
+        <td align="center"><a href="/delete_bus/{{ i.id }}" onclick="return confirm('Do you really want to delete {{ i.name }}?')">Click Here</a></td>
+        <td align="center"><a href="/set_bus_timings/{{ i.id }}">Click Here</a></td>
+        <td align="center"><a href="/track_bus/{{ i.id }}">Click Here</a></td>
+    </tr>
+    {%endfor%}
+
+</table>
+    {% else %}
+        <div class="col-lg-4 col-xl-8 offset-xl-2">
+            <div class="search-wrapper">No Buses are Added Yet!</div></div>
+    {% endif %}
+{% endblock %}

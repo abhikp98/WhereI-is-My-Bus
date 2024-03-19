@@ -1,0 +1,174 @@
+{% extends 'traffic/index.html' %}
+{% block head %}
+    View Blocks Added yourself
+{% endblock %}
+{% block body %}
+    <div class="col-lg-4 col-xl-8 offset-xl-2">
+        <div class="search-wrapper">
+          <form action="/traffic_add_blocks_post" method="post">
+              <table class="table table-borderless">
+                  <tr>
+                        <td>
+                            <p align="right"><strong>Latitude</strong> </p>
+                        </td>
+                        <td>
+                            <p>
+                                <input type="text" class="form-control" name="latitude" id="latitude" minlength="3" readonly required>
+                            </p>
+                        </td>
+                  </tr>
+                  <tr>
+                        <td>
+                            <p align="right"><strong>Longitude</strong></p>
+                        </td>
+                        <td>
+                            <p>
+                          <input type="text" class="form-control" name="longitude" id="longitude" minlength="3" readonly required>
+                        </p>
+                        </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                        <div id="gmap">
+                        </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                        <div align="center">
+                            <p>
+                                <input type="submit" name="submit" class="button" id="button" value="Add" />
+                            </p>
+                            <p>&nbsp;</p>
+                        </div>
+                    </td>
+                  </tr>
+              </table>
+          </form>
+              <table class="table table-bordered">
+                <tr>
+                  <th><div align="center">Sl</div></th>
+                  <th><div align="center">Map</div></th>
+                  <th><div align="center">delete</div></th>
+                </tr>
+                  {% for i in data %}
+                <tr>
+                    <td align="center">{{forloop.counter}}</td>
+                    <td align="center"><a href="https://www.google.com/maps?q={{ i.latitude }},{{ i.longitude }}">Click Here</a></td>
+                    <td align="center"><a href="traffic_delete_block/{{ i.id }}" onclick="return confirm('Do you really want to delete?')">Click Here</a> </td>
+                </tr>
+                  {% endfor %}
+              </table>
+          </div>
+    </div>
+
+    <script type="text/javascript" async
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6v5-2uaq_wusHDktM9ILcqIrlPtnZgEk&callback=GetMylocation">
+</script>
+<script type="text/javascript">
+
+    var map;
+        function initialize() {
+            var myLatlng = new google.maps.LatLng(11.618061975930,75.36565089010);
+            var myOptions = {
+                zoom:7,
+                center: myLatlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            map = new google.maps.Map(document.getElementById("gmap"), myOptions);
+            // marker refers to a global variable
+            marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map
+            });
+
+            google.maps.event.addListener(map, "click", function(event) {
+                // get lat/lon of click
+                var clickLat = event.latLng.lat();
+                var clickLon = event.latLng.lng();
+
+                // show in input box
+                document.getElementById("latitude").value = clickLat.toFixed(5);
+                document.getElementById("longitude").value = clickLon.toFixed(5);
+
+{#                  var marker = new google.maps.Marker({#}
+{#                        position: new google.maps.LatLng(clickLat,clickLon),#}
+{#                        map: map#}
+{#                     });#}
+            });
+    }
+
+    window.onload = function () { GetMylocation() };
+
+
+</script>
+     <style>
+ div#gmap {
+
+        height: 300px;
+        border:double;
+ }
+    </style>
+
+{#    <form id="form1" runat="server">#}
+<center>
+<!-- MAP HOLDER -->
+
+<!-- REFERENCES -->
+{#Lat: <input type="text" id='lat'>#}
+{#Lon: <input type="text" id='lon'>#}
+
+</center>
+
+
+
+
+<script>
+
+function GetMylocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    //x.innerHTML = "Geolocation is not supported by this browser.";
+      alert("Geolocation is not supported by this browser.")
+  }
+}
+var x1 = document.getElementById("latitude");
+var x2 = document.getElementById("longitude");
+var map;
+function showPosition(position) {
+  x1.value=position.coords.latitude;
+  x2.value=position.coords.longitude;
+
+  var myLatlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+            var myOptions = {
+                zoom:14,
+                center: myLatlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            map = new google.maps.Map(document.getElementById("gmap"), myOptions);
+            // marker refers to a global variable
+            marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map
+            });
+
+            google.maps.event.addListener(map, "click", function(event) {
+                // get lat/lon of click
+                var clickLat = event.latLng.lat();
+                var clickLon = event.latLng.lng();
+
+                // show in input box
+                document.getElementById("latitude").value = clickLat.toFixed(5);
+                document.getElementById("longitude").value = clickLon.toFixed(5);
+
+{#                  var marker = new google.maps.Marker({#}
+{#                        position: new google.maps.LatLng(clickLat,clickLon),#}
+{#                        map: map#}
+{#                     });#}
+            });
+
+
+}
+</script>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'owner/index.html' %}
+{% block head %}{% endblock %}
+{% block body %}
+    <table class="table table-bordered">
+        <tr>
+            <th>Sl</th>
+            <th>Bus</th>
+            <th>Routes</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.name }}</td>
+            <td><a href="/view_routes/{{ i.id }}">Click Here</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

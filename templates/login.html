@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+{% block body %}
+    <section class="section-margin">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-xl-8 offset-xl-2">
+          <div class="search-wrapper">
+            <h3>Login</h3>
+
+            <form id="form1" name="form1" method="post" action="/login_post">
+            {% csrf_token %}
+            <table class="table table-borderless container">
+                <tr>
+                  <td class="w-50"><div align="right"><strong>Email</strong></div></td>
+                  <td class="w-50"><input type="email" class="form-control" pattern="^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$" name="username" id="textfield2" autofocus required /></td>
+                </tr>
+                <tr>
+                  <td><div align="right"><strong>Password</strong></div></td>
+                  <td><input type="password" class="form-control" name="password" id="textfield5" required/></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div align="center">
+                            <p>
+                              <input type="submit" class="button border-0 mt-3" name="submit" id="button" value="Login" />
+                            </p>
+                            <p>&nbsp;</p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+      </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

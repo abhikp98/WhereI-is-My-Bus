@@ -1,0 +1,19 @@
+{% extends 'agency/index.html' %}
+{% block head %}
+    View Rating
+{% endblock %}
+{% block body %}
+    <table class="table table-bordered">
+    <tr>
+        <th>Sl</th><th>Bus</th><th>Rating</th>
+    </tr>
+    {% for i in data %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.TRAVELBUS.name }}</td>
+            <td>{{ i.rating }}</td>
+        </tr>
+    {% endfor %}
+
+    </table>
+{% endblock %}

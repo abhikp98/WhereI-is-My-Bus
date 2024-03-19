@@ -1,0 +1,62 @@
+{% extends 'index.html' %}
+{% block body %}
+<section class="section-margin">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-xl-8 offset-xl-2">
+          <div class="search-wrapper">
+            <h3>Bus Owner SignUp</h3>
+        <form action="/signup_post" method="post" enctype="multipart/form-data" name="form1" id="form1">
+            {% csrf_token %}
+            <table class="table table-borderless container">
+                    <td width="50%">
+                        <p align="right"><strong>Email</strong> </p>
+                    </td>
+                    <td width="50%">
+                        <p>
+                            <input type="email" pattern="^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$" class="form-control" name="email" id="textfield" autofocus required />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div align="right"><strong>Name</strong></div>
+                    </td>
+                    <td><input type="text" class="form-control" name="name" required pattern="[A-Za-z]{3-30}"/></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div align="right"><strong>Phone Number</strong></div>
+                    </td>
+                    <td><input type="tel" class="form-control" name="phone" required pattern="[6789][0-9]{9}" /></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div align="right"><strong>Photo</strong></div>
+                    </td>
+                    <td align="center"><input type="file" class="form-control" name="photo" accept="image/*"  required/></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div align="right"><strong>Password</strong></div>
+                    </td>
+                    <td><input type="password" class="form-control" name="password"  required/></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div align="center">
+                            <p>
+                              <input type="submit" class="button border-0 mt-3" name="submit" id="button" value="Join" />
+                            </p>
+                      </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

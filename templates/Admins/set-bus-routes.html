@@ -1,0 +1,31 @@
+{% extends 'Admins/index.html' %}
+{% block head %}
+{% endblock %}
+{% block body %}
+    <form action="/set_busroutes_post/{{ id }}" method="post">
+        {% csrf_token %}
+        <table class="table table-bordered">
+            <tr>
+                <td><b>Bus Routes for ({{ busname }})</b></td>
+            </tr>
+            <tr>
+                <td>
+                {% for i in data %}
+                    <label>
+                        {% if i.id in list %}
+                        <input type="checkbox" class="form-control" name="checkbox" value="{{ i.id }}" checked>
+                        {% else %}
+                        <input type="checkbox" class="form-control" name="checkbox" value="{{ i.id }}">
+                        {% endif %}
+                    {{ i.tripfrom }} to {{ i.tripto }}<br>
+                    </label>
+                {% endfor %}
+                </td>
+
+            </tr>
+            <tr>
+                <td><input type="submit" value="Allocate"></td>
+            </tr>
+        </table>
+
+    </form>{% endblock %}

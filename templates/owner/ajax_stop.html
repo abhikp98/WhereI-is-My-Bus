@@ -1,0 +1,10 @@
+{% for i in data %}
+    <tr>
+    <th>{{ i.name }}: </th><td><input type="time" class="form-control" value="{{ i.time }}" name="stop" required></td>
+    </tr>
+{% endfor %}
+{% if data|length != 0 %}
+    <tr>
+    <td colspan="2"><input type="submit" class="button" value="Set"></td>
+    </tr>
+{% endif %}

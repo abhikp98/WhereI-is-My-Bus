@@ -1,0 +1,60 @@
+{% extends 'owner/index.html' %}
+{% block head %}Add Drivers{% endblock %}
+{% block body %}
+    <div class="col-lg-4 col-xl-8 offset-xl-2">
+          <div class="search-wrapper">
+        <form action="/add_driver_post" method="post" enctype="multipart/form-data" name="form1" id="form1">
+            {% csrf_token %}
+            <table class="table table-borderless">
+                <tr>
+                    <td width="50%">
+                        <p align="right"><strong>Name</strong> </p>
+                    </td>
+                    <td width="50%">
+                        <p>
+                            <input type="text" class="form-control" name="name" id="textfield" maxlength="5" required autofocus/>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p align="right"><strong>Email</strong> </p>
+                    </td>
+                    <td>
+                        <p>
+                            <input type="email" name="email" class="form-control" id="textfield" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required/>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p align="right"><strong>Phone Number</strong> </p>
+                    </td>
+                    <td><p>
+                      <input type="tel" name="phone" class="form-control" id="textfield1"  pattern="[6789][0-9]{9}" required/>
+                    </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p align="right"><strong>License</strong> </p>
+                    </td>
+                    <td><p>
+                      <input type="text" name="license" class="form-control" required>
+                    </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div align="center">
+                            <p>
+                                <input type="submit" name="submit" class="button" id="button" value="Add" />
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+      </form>
+          </div></div>
+{% endblock %}

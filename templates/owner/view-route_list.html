@@ -1,0 +1,16 @@
+{% extends 'owner/index.html' %}
+{% block head %}{% endblock %}
+{% block body %}
+    <table class="table table-bordered">
+        <tr>
+            <th>Sl</th>
+            <th>Routes</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.ROUTE.tripfrom }} to {{ i.ROUTE.tripto }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

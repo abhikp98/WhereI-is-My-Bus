@@ -1,0 +1,38 @@
+{% extends 'owner/index.html' %}
+{% block head %}View All Drivers{% endblock %}
+{% block body %}
+    {% if data|length != 0 %}
+<table class="table table-bordered">
+  <tr>
+      <th><div align="center">Sl</div></th>
+      <th><div align="center">Name</div></th>
+      <th><div align="center">Email</div></th>
+      <th><div align="center">Phone Number Number</div></th>
+      <th><div align="center">License</div> </th>
+      <th><div align="center">Edit</div> </th>
+      <th><div align="center">Delete</div> </th>
+      <th><div align="center">Allocation</div> </th>
+  </tr>
+    {%for i in data%}
+    <tr>
+        <td align="center">{{forloop.counter}}</td>
+        <td align="center">{{i.name}}</td>
+        <td align="center">{{i.email}}</td>
+        <td align="center">{{i.phone}}</td>
+        <td align="center">{{i.license}}</td>
+        <td align="center"><a href="/edit_driver/{{ i.id }}">Click Here</a></td>
+        <td align="center"><a href="/delete_driver/{{ i.id }}" onclick="return confirm('Do you really want to delete {{ i.name }}?')">Click Here</a></td>
+        {% if i.status == True %}
+            <td><table width="100%"><tr><td align="left">Allocated to ({{ i.busname }})</td><td align="center"><a href="/allocate/{{ i.id }}">Change</a></td><td align="right"><a href="/delete_allocation/{{ i.id }}" onclick="return confirm('Do you really want to delete Allocation?')">Delete</a></td></tr></table></td>
+        {% else %}
+            <td align="center"><a href="/allocate/{{ i.id }}">Allocate</a></td>
+        {% endif %}
+    </tr>
+    {%endfor%}
+
+</table>
+    {% else %}
+        <div class="col-lg-4 col-xl-8 offset-xl-2">
+            <div class="search-wrapper">No Drivers are Added Yet</div></div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'owner/index.html' %}
+{% block head %}{% endblock %}
+{% block body %}
+    <div class="col-lg-4 col-xl-8 offset-xl-2">
+          <div class="search-wrapper">
+        <form action="/add_driver_post" method="post" enctype="multipart/form-data" name="form1" id="form1">
+            {% csrf_token %}
+            <table class="table table-borderless">
+                <tr>
+                    <td width="50%">
+                        <p align="right"><strong>Name</strong> </p>
+                    </td>
+                    <td width="50%">
+                        <p>
+                            <input type="text" class="form-control" name="name" id="textfield" value="{{ data.name }}"  required/>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%">
+                        <p align="right"><strong>Email</strong> </p>
+                    </td>
+                    <td width="50%">
+                        <p>
+                            <input readonly type="text" class="form-control" name="email" id="textfield" value="{{ data.email }}" required/>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p align="right"><strong>Phone Number</strong> </p>
+                    </td>
+                    <td><p>
+                      <input type="text" class="form-control" name="phone" id="textfield1" value="{{ data.phone }}" required/>
+                    </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p align="right"><strong>License</strong> </p>
+                    </td>
+                    <td><p>
+                      <input type="text" class="form-control" name="license" value="{{ data.license }}" required>
+                    </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div align="center">
+                            <p>
+                                <input type="submit" name="submit" class="button" id="button" value="Update" />
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </form></div></div>
+{% endblock %}

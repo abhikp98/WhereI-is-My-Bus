@@ -1,0 +1,74 @@
+{% extends 'owner/index.html' %}
+{% block head %}
+    Add Bus Details
+{% endblock %}
+{% block body %}
+    <div class="col-lg-4 col-xl-8 offset-xl-2">
+          <div class="search-wrapper">
+<form action="/add_bus_post" method="post" enctype="multipart/form-data" name="form1" id="form1">
+    {% csrf_token %}
+    <table class="table table-borderless">
+        <tr>
+            <td>
+                <p align="right"><strong>Name</strong> </p>
+            </td>
+            <td >
+                <p>
+                    <input type="text" class="form-control" name="name" id="textfield" minlength="3" required autofocus/>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p align="right"><strong>Bus RC</strong> </p>
+            </td>
+            <td><p>
+              <input type="text" class="form-control" name="rc" id="textfield1" minlength="3"  required/>
+            </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p align="right"><strong>RegNo</strong> </p>
+            </td>
+            <td><p>
+              <input type="text" class="form-control" name="regno" minlength="3" required>
+            </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p align="right"><strong>Assign route</strong></p>
+            </td>
+            <td>
+                <p>
+                    {% if data|length == 0 %}
+                        Wait for Admin To add Route List, check this page after sometimes
+                    {% else %}
+                        {% for i in data %}
+                            <label>
+                                <input type="checkbox" name="route" value="{{ i.id }}"> <b>{{ i.tripfrom }} to {{ i.tripto }}</b>
+                            </label>
+                        {% endfor %}
+                    {% endif %}
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div align="center">
+                    <p>
+                        {% if data|length != 0 %}
+                        <input type="submit" name="submit" class="button" id="button" value="Add" />
+                        {% endif %}
+                    </p>
+                    <p>&nbsp;</p>
+                </div>
+            </td>
+        </tr>
+
+    </table>
+</form>
+          </div>
+    </div>
+{% endblock %}

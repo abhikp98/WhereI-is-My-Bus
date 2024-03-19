@@ -1,0 +1,22 @@
+{% extends 'traffic/index.html' %}
+{% block head %}View All Owners{% endblock %}
+{% block body %}
+<table width="100%" class="table table-bordered">
+  <tr>
+      <th><div align="center">Sl</div></th>
+      <th><div align="center">Date</div></th>
+      <th><div align="center">User Name</div></th>
+      <th><div align="center">Complaints</div></th>
+      <th><div align="center">Reply</div></th>
+  </tr>{%for i in data%}
+    <tr>
+        <td align="center">{{forloop.counter}}</td>
+        <td align="center">{{i.complaindate}}</td>
+        <td align="center">{{i.USER.name}}</td>
+        <td align="center">{{ i.complaint }}</td>
+        <td align="center">{% if i.reply == 'Pending' %}<a href="/admin_reply/{{ i.id }}">Reply</a>{% else %}{{ i.reply }}{% endif %}</td>
+    </tr>
+    {%endfor%}
+
+</table>
+{% endblock %}

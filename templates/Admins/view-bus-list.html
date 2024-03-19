@@ -1,0 +1,43 @@
+{% extends 'Admins/index.html' %}
+{% block head %}
+    Bus List
+{% endblock %}
+{% block body %}
+    {% if data|length != 0 %}
+<table class="table table-bordered">
+  <tr>
+      <th><div align="center">Sl</div></th>
+      <th><div align="center">Bus name</div></th>
+      <th><div align="center">RC Number</div></th>
+      <th><div align="center">Register Number</div></th>
+      <th><div align="center">Route Allocation</div></th>
+      <th><div align="center">Avg Rating</div> </th>
+      <th><div align="center">Block/Unblock</div></th>
+
+  </tr>
+    {%for i in data%}
+        <tr>
+            <td align="center">{{forloop.counter}}</td>
+            <td align="center">{{i.name}}</td>
+            <td align="center">{{i.rc}}</td>
+            <td align="center">{{i.regno}}</td>
+            <td align="center"><a href="/set_busroutes/{{ i.id }}">Click Here</a></td>
+        <td align="center">{{ i.avgrating }}</td>
+            <td align="center">
+                {% if i.status == 'Blocked' %}
+                    <a href="/block_bus/Unblocked/{{ i.id }}">Unblock</a>
+                {% else %}
+                    <a href="/block_bus/Blocked/{{ i.id }}">Block</a>
+                {% endif %}
+            </td>
+        </tr>
+    {%endfor%}
+
+</table>
+    {% else %}
+        <div class="col-lg-4 col-xl-8 offset-xl-2">
+          <div class="search-wrapper">
+        No Bus Lists are Available Right now
+          </div></div>
+    {% endif %}
+{% endblock %}
